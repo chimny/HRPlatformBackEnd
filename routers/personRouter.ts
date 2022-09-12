@@ -35,12 +35,14 @@ personRouter
             const newPerson = new PersonRecord(req.body);
             await newPerson.insert();
             responseMessage = {
-                message: `Person ${newPerson.name} ${newPerson.surName} has been added`
+                message: `Person ${newPerson.name} ${newPerson.surName} has been added`,
+                status: 'success'
             }
 
         } else {
             responseMessage = {
-                message: 'name and surName can\'t be empty!'
+                message: 'name and surName can\'t be empty!',
+                status: 'error'
             }
         }
 

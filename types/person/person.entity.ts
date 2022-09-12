@@ -4,6 +4,10 @@ export interface PersonEntity{
     surName: string;
 }
 
+
+type resStatus = 'success' | 'error'
+
 export interface InsertedPersonRes{
     message: string;
+    status: resStatus;
 }
