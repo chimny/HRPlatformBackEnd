@@ -1,0 +1,1 @@
+export type PositionList = 'Assistant' | 'Manager' | 'Junior Specialist' | 'Senior Specialist' | 'Specialist' | 'Trainee'
