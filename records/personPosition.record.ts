@@ -7,11 +7,10 @@ import {PersonPositionEntity,PositionList} from "../types/personPosition";
 
 
 
-//@todo - refactor peopllist position
 
-// type PersonRecordResults = [PersonRecord[], FieldPacket[]];
+type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
-export class PersonPosition implements PersonPositionEntity {
+export class PersonPositionRecord implements PersonPositionEntity {
 
     id?: string;
     personId: string;
@@ -20,7 +19,7 @@ export class PersonPosition implements PersonPositionEntity {
 
 
     constructor(obj: PersonPositionEntity) {
-        if (!obj.personId || !obj.position) throw new ValidationError('Name or Surname cannot be empty!');
+        if (!obj.personId || !obj.position) throw new ValidationError('Person ID and position must be added!');
         if (obj.salary < 0) throw new ValidationError('Salary cannot be below 0!');
 
 
@@ -45,45 +44,45 @@ export class PersonPosition implements PersonPositionEntity {
         return this.id
     }
 
-    //
-    // static async listAll(): Promise<PersonRecord[]> {
-    //     const [results] = (await pool.execute("SELECT * FROM `peoplelist` ORDER BY `surName` ")) as PersonRecordResults;
-    //
-    //     return results.map(obj => new PersonRecord(obj));
-    // }
-    //
-    //
-    // static async getOne(id: string): Promise<PersonRecord | null> {
-    //
-    //     const [results] = await pool.execute("SELECT * FROM `peoplelist` WHERE `id`=:id", {
-    //         id
-    //     }) as PersonRecordResults
-    //
-    //
-    //     return results.length === 0 ? null : new PersonRecord(results[0]);
-    //
-    // }
-    //
-    //
-    // static async deleteOne(id: string): Promise<string> {
-    //
-    //     await pool.execute("DELETE FROM `peoplelist` WHERE `id`=:id", {
-    //         id
-    //     })
-    //
-    //     return 'user has been deleted';
-    // }
-    //
-    // static async updateOne(id: string, name: string, surName: string): Promise<string> {
-    //
-    //     await pool.execute("UPDATE `peoplelist` SET `surName`=:surName, `name`=:name WHERE `id`=:id", {
-    //         name, surName, id
-    //     })
-    //
-    //
-    //     return id;
-    //
-    // }
+
+    static async listAll(): Promise<PersonPositionEntity[]> {
+        const [results] = (await pool.execute("SELECT * FROM `peoplelist_positions` ")) as PersonPositionRecordResults;
+
+        return results.map(obj => new PersonPositionRecord(obj));
+    }
+
+
+    static async getOne(id: string): Promise<PersonPositionRecord | null> {
+
+        const [results] = await pool.execute("SELECT * FROM `peoplelist_positions` WHERE `id`=:id", {
+            id
+        }) as PersonPositionRecordResults
+
+
+        return results.length === 0 ? null : new PersonPositionRecord(results[0]);
+
+    }
+
+
+    static async deleteOne(id: string): Promise<string>{
+
+        await pool.execute("DELETE FROM `peoplelist_positions` WHERE `id`=:id", {
+            id
+        })
+
+        return 'user has been deleted';
+    }
+
+    static async updateOne(id: string, position: string, salary: number): Promise<string> {
+
+        await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `id`=:id", {
+            position, salary, id
+        })
+
+
+        return id;
+
+    }
 
 
 }
