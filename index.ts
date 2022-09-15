@@ -3,7 +3,7 @@ import * as cors from 'cors';
 import {personRouter} from "./routers/personRouter";
 import {PersonPositionRecord} from "./records/personPosition.record";
 import {handleError} from "./utils/error";
-/*
+import {personPositionRouter} from "./routers/personPositionRouter";
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/persons', personRouter);
+app.use('/personsUpdate',personPositionRouter)
 
 
 app.use(handleError);
@@ -24,13 +25,5 @@ app.listen(3001, '0.0.0.0',()=>{
 
 
 
-*/
 
 
-//test function for methods testing below
-
-
-(async () => {
-  // console.log(await PersonPositionRecord.listAll())
-    console.log(await PersonPositionRecord.getOne('6e52cb18-3203-11ed-826c-382c4a1f0865'))
-})()

@@ -1,4 +1,3 @@
-import {PersonEntity} from "../types/person";
 import {ValidationError} from "../utils/error";
 import {v4 as uuid} from 'uuid';
 import {pool} from "../utils/db";
@@ -12,7 +11,7 @@ type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
 export class PersonPositionRecord implements PersonPositionEntity {
 
-    id?: string;
+    // id?: string;
     personId: string;
     position: PositionList;
     salary: number;
@@ -23,11 +22,20 @@ export class PersonPositionRecord implements PersonPositionEntity {
         if (obj.salary < 0) throw new ValidationError('Salary cannot be below 0!');
 
 
-        this.id = obj.id;
+        // this.id = obj.id;
         this.personId = obj.personId;
         this.position = obj.position;
         this.salary = obj.salary
     }
+
+
+    static async listAll(): Promise<PersonPositionEntity[]> {
+        const [results] = (await pool.execute("SELECT `salary`,`personId`,`position` FROM `peoplelist_positions` ")) as PersonPositionRecordResults;
+
+        return results.map(obj => new PersonPositionRecord(obj));
+    }
+
+/*
 
     async insert(): Promise<string> {
         if (!this.id) {
@@ -45,11 +53,7 @@ export class PersonPositionRecord implements PersonPositionEntity {
     }
 
 
-    static async listAll(): Promise<PersonPositionEntity[]> {
-        const [results] = (await pool.execute("SELECT * FROM `peoplelist_positions` ")) as PersonPositionRecordResults;
 
-        return results.map(obj => new PersonPositionRecord(obj));
-    }
 
 
     static async getOne(id: string): Promise<PersonPositionRecord | null> {
@@ -83,6 +87,7 @@ export class PersonPositionRecord implements PersonPositionEntity {
         return id;
 
     }
+*/
 
 
 }
