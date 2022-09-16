@@ -1,17 +1,10 @@
 import {Router} from "express";
 import {PersonRecord} from "../records/person.record";
-import {InsertedPersonRes} from "../types/person";
 import {PersonPositionRecord} from "../records/personPosition.record";
-import {PositionList} from "../types/personPosition";
+import {sendDataType} from "../types/personPosition/personUpdatedList";
 
 
-interface PersonUpdatedList {
-    name:string;
-    surName:string;
-    personId:string;
-    position:PositionList;
-    salary:number
-}
+
 
 
 export const personPositionRouter = Router();
@@ -23,20 +16,23 @@ personPositionRouter
 
         const peopleList = await PersonRecord.listAll();
         const personPositionList = await PersonPositionRecord.listAll()
+        const personPositionData: sendDataType = [];
 
 
-  console.log(peopleList)
-
+        for (const person of peopleList) {
+            personPositionList.forEach(personPosition => {
+                personPosition.personId === person.id ? personPositionData.push({
+                    ...personPosition,
+                    name: person.name,
+                    surName: person.surName
+                }) : null
+            })
+        }
 
         res.json({
-            peopleList,
-            personPositionList
-            // finalArr
-
+            personPositionData
         })
     })
-
-
 
 
 //router from person positions
