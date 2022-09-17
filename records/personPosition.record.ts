@@ -11,7 +11,7 @@ type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
 export class PersonPositionRecord implements PersonPositionEntity {
 
-    // id?: string;
+    id?: string;
     personId: string;
     position: PositionList;
     salary: number;
@@ -35,7 +35,30 @@ export class PersonPositionRecord implements PersonPositionEntity {
         return results.map(obj => new PersonPositionRecord(obj));
     }
 
-/*
+
+    static async updateOne(personId: string, position: string, salary: number): Promise<string> {
+
+        await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
+            position, salary, personId
+        })
+
+
+        return personId;
+
+    }
+
+
+    static async getOne(personId: string): Promise<PersonPositionRecord | null> {
+
+        const [results] = await pool.execute("SELECT * FROM `peoplelist_positions` WHERE `personId`=:personId", {
+            personId
+        }) as PersonPositionRecordResults
+
+
+        return results.length === 0 ? null : new PersonPositionRecord(results[0]);
+
+    }
+
 
     async insert(): Promise<string> {
         if (!this.id) {
@@ -54,18 +77,15 @@ export class PersonPositionRecord implements PersonPositionEntity {
 
 
 
+/*
 
 
-    static async getOne(id: string): Promise<PersonPositionRecord | null> {
-
-        const [results] = await pool.execute("SELECT * FROM `peoplelist_positions` WHERE `id`=:id", {
-            id
-        }) as PersonPositionRecordResults
 
 
-        return results.length === 0 ? null : new PersonPositionRecord(results[0]);
 
-    }
+
+
+
 
 
     static async deleteOne(id: string): Promise<string>{
@@ -77,16 +97,7 @@ export class PersonPositionRecord implements PersonPositionEntity {
         return 'user has been deleted';
     }
 
-    static async updateOne(id: string, position: string, salary: number): Promise<string> {
 
-        await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `id`=:id", {
-            position, salary, id
-        })
-
-
-        return id;
-
-    }
 */
 
 

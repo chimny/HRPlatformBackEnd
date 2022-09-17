@@ -4,9 +4,6 @@ import {PersonPositionRecord} from "../records/personPosition.record";
 import {sendDataType} from "../types/personPosition/personUpdatedList";
 
 
-
-
-
 export const personPositionRouter = Router();
 
 
@@ -35,19 +32,27 @@ personPositionRouter
     })
 
 
-//router from person positions
-/*
+    //router from person positions
+
 
     .get('/chosenPerson/:personID', async (req, res) => {
 
-        const chosenPerson = await PersonRecord.getOne(req.params.personID);
+        const {personID} = req.params
+        const personsPositionAndSalaryData = await PersonPositionRecord.getOne(personID);
+        const chosenPerson = await PersonRecord.getOne(personID);
+
+        const chosenPersonData = {
+            ...personsPositionAndSalaryData,
+            name: chosenPerson.name,
+            surName: chosenPerson.surName
+        }
 
         res.json({
-            chosenPerson
+            chosenPersonData
         })
     })
 
-    .post('/addPerson', async (req, res) => {
+    /*.post('/addPerson', async (req, res) => {
 
         let responseMessage: InsertedPersonRes;
 
@@ -69,7 +74,7 @@ personPositionRouter
 
         res.json(responseMessage)
 
-    })
+    })*/
 
     .delete('/deletePerson/:personID', async (req, res) => {
 
@@ -91,12 +96,13 @@ personPositionRouter
     })
 
     .patch(
-        '/updatePerson/:personID/:personName/:personSurName', async (req, res) => {
-            const {personID, personName, personSurName} = req.params;
+        '/updatePerson/:personID/:personName/:personSurName/:position/:salary', async (req, res) => {
+            const {personID, personName, personSurName, position, salary} = req.params;
             if (await PersonRecord.getOne(personID)) {
                 const updatedPerson = await PersonRecord.updateOne(personID, personName, personSurName);
+                const updatedPersonPositionData = await PersonPositionRecord.updateOne(personID, position, Number(salary))
                 return res.json({
-                    updatedPerson
+                    message: 'person has been updated!'
                 })
             }
 
@@ -107,6 +113,6 @@ personPositionRouter
 
         }
     )
-*/
+
 
 
