@@ -2,6 +2,8 @@ import {Router} from "express";
 import {PersonRecord} from "../records/person.record";
 import {PersonPositionRecord} from "../records/personPosition.record";
 import {sendDataType} from "../types/personPosition/personUpdatedList";
+import {PersonPositionEntity, PositionList} from "../types/personPosition";
+import {InsertedPersonRes} from "../types/person";
 
 
 export const personPositionRouter = Router();
@@ -14,7 +16,6 @@ personPositionRouter
         const peopleList = await PersonRecord.listAll();
         const personPositionList = await PersonPositionRecord.listAll()
         const personPositionData: sendDataType = [];
-
 
         for (const person of peopleList) {
             personPositionList.forEach(personPosition => {
@@ -31,8 +32,6 @@ personPositionRouter
         })
     })
 
-
-    //router from person positions
 
 
     .get('/chosenPerson/:personID', async (req, res) => {
@@ -52,29 +51,38 @@ personPositionRouter
         })
     })
 
-    /*.post('/addPerson', async (req, res) => {
+    .post('/addPerson/:personId/:position/:salary', async (req, res) => {
 
         let responseMessage: InsertedPersonRes;
 
-        const {name, surName} = req.body;
-        if (name.length > 0 && surName.length > 0) {
-            const newPerson = new PersonRecord(req.body);
-            await newPerson.insert();
-            responseMessage = {
-                message: `Person ${newPerson.name} ${newPerson.surName} has been added`,
-                status: 'success'
-            }
+        const {position, salary, personId} = req.params;
 
-        } else {
+            //@todo review postion type
+            const insertedData:any = {position, salary:Number(salary), personId}
+
+
+
+        // if (await PersonRecord.getOne(personId)) {
+            if (  insertedData.salary> 0) {
+                const newPersonPosition = new PersonPositionRecord({personId:personId,position,salary:Number(salary)});
+                await newPersonPosition.insert();
+                responseMessage = {
+                    message: `Person with id ${personId} has been added with position: ${position} and salary ${salary}`,
+                    status: 'success'
+                }
+
+            }
+        // }
+        else {
             responseMessage = {
-                message: 'name and surName can\'t be empty!',
+                message: 'unexpected error occured',
                 status: 'error'
             }
-        }
+        // }
 
         res.json(responseMessage)
 
-    })*/
+    })
 
     .delete('/deletePerson/:personID', async (req, res) => {
 
@@ -99,10 +107,10 @@ personPositionRouter
         '/updatePerson/:personID/:personName/:personSurName/:position/:salary', async (req, res) => {
             const {personID, personName, personSurName, position, salary} = req.params;
             if (await PersonRecord.getOne(personID)) {
-                const updatedPerson = await PersonRecord.updateOne(personID, personName, personSurName);
-                const updatedPersonPositionData = await PersonPositionRecord.updateOne(personID, position, Number(salary))
+                await PersonRecord.updateOne(personID, personName, personSurName);
+                await PersonPositionRecord.updateOne(personID, position, Number(salary))
                 return res.json({
-                    message: 'person has been updated!'
+                    message: `person ${personID} has been updated!`
                 })
             }
 
