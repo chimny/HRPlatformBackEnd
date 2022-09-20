@@ -54,6 +54,17 @@ export class PersonRecord implements PersonEntity {
 
     }
 
+    static async exists(id: string): Promise<boolean | null> {
+
+        const results = await pool.execute("SELECT * FROM `peoplelist` WHERE `id`=:id", {
+            id
+        }) as PersonRecordResults
+
+
+        if (results) return true
+
+    }
+
 
     static async deleteOne(id: string): Promise<string> {
 

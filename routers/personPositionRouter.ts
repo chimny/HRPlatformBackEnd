@@ -33,7 +33,6 @@ personPositionRouter
     })
 
 
-
     .get('/chosenPerson/:personID', async (req, res) => {
 
         const {personID} = req.params
@@ -57,28 +56,28 @@ personPositionRouter
 
         const {position, salary, personId} = req.params;
 
-            //@todo review postion type
-            const insertedData:any = {position, salary:Number(salary), personId}
 
-
-
-        // if (await PersonRecord.getOne(personId)) {
-            if (  insertedData.salary> 0) {
-                const newPersonPosition = new PersonPositionRecord({personId:personId,position,salary:Number(salary)});
+        if (await PersonRecord.exists(personId)) {
+            if (Number(salary) > 0) {
+                const newPersonPosition = new PersonPositionRecord({
+                    personId: personId,
+                    position: position as PositionList,
+                    salary: Number(salary)
+                });
                 await newPersonPosition.insert();
                 responseMessage = {
                     message: `Person with id ${personId} has been added with position: ${position} and salary ${salary}`,
                     status: 'success'
                 }
-
             }
-        // }
+        }
+
         else {
             responseMessage = {
-                message: 'unexpected error occured',
+                message: 'person has not been found',
                 status: 'error'
             }
-        // }
+        }
 
         res.json(responseMessage)
 
