@@ -4,7 +4,7 @@ import {PersonPositionRecord} from "../records/personPosition.record";
 import {sendDataType} from "../types/personPosition/personUpdatedList";
 import {PersonPositionEntity, PositionList} from "../types/personPosition";
 import {InsertedPersonRes} from "../types/person";
-import {postValidationPositionSalary} from "./functions/postValidationPositionSalary";
+import {postErrorValidationPositionSalary} from "./functions/postErrorValidationPositionSalary";
 
 
 export const personPositionRouter = Router();
@@ -56,24 +56,21 @@ personPositionRouter
         let responseMessage: InsertedPersonRes;
         const {position, salary, personId} = req.params;
 
-       if (await postValidationPositionSalary(position,salary,personId)){
-          responseMessage = {
-              message:'error occured',
-              status:'error'
-          }
-       }
-       else {
-           const newPersonPosition = new PersonPositionRecord({
-               personId: personId,
-               position: position as PositionList,
-               salary: Number(salary)
-           });
-           await newPersonPosition.insert();
-           responseMessage = {
-               message: `Person with id ${personId} has been added with position: ${position} and salary ${salary}`,
-               status: 'success'
-           }
-       }
+        if (await postErrorValidationPositionSalary(personId, position, salary)) {
+            responseMessage = {message: String(await postErrorValidationPositionSalary(personId, position, salary)),
+            status:'error'};
+        } else {
+            const newPersonPosition = new PersonPositionRecord({
+                personId: personId,
+                position: position as PositionList,
+                salary: Number(salary)
+            });
+            await newPersonPosition.insert();
+            responseMessage = {
+                message: `Person with id ${personId} has been added with position: ${position} and salary ${salary}`,
+                status: 'success'
+            }
+        }
 
         res.json(responseMessage)
 
