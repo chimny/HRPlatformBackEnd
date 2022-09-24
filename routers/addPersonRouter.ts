@@ -8,6 +8,7 @@ import {PersonRecord} from "../records/person.record";
 
 export const addPersonRouter = Router();
 
+//@todo refactor post request
 
 addPersonRouter
 

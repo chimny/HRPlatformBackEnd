@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as cors from 'cors';
-import {personRouter} from "./routers/personRouter";
-import {PersonPositionRecord} from "./records/personPosition.record";
 import {handleError} from "./utils/error";
-import {personPositionRouter} from "./routers/personPositionRouter";
+import {addPersonRouter} from "./routers/addPersonRouter";
+import {personListRouter} from "./routers/personListRouter";
+
 
 const app = express();
 
@@ -13,8 +13,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use('/persons', personRouter);
-app.use('/personsUpdate',personPositionRouter)
+app.use('/addPerson', addPersonRouter);
+app.use('/personList',personListRouter)
 
 
 app.use(handleError);
