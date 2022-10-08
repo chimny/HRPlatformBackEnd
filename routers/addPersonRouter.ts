@@ -7,15 +7,14 @@ import {PersonRecord} from "../records/person.record";
 
 export const addPersonRouter = Router();
 
-
 addPersonRouter
-    .post('/addPerson', async (req, res) => {
+    .post('/', async (req, res) => {
 
         let responseMessage: InsertedPersonRes;
-        const {name, surName, position, salary} = req.body;
+        const {name,  surname, position, salary} = req.body;
 
 //        Validation for person record below
-        if (!name || !surName || name.length === 0 || surName.length === 0) {
+        if (!name || !surname || name.length === 0 || surname.length === 0) {
             responseMessage = {
                 message: 'name and surName can\'t be empty!',
                 status: 'error'
@@ -24,7 +23,7 @@ addPersonRouter
             return
         }
 
-        const newPerson = new PersonRecord({name, surName});
+        const newPerson = new PersonRecord({name, surName: surname});
         await newPerson.insert();
         const personId = newPerson.id
 
@@ -38,16 +37,14 @@ addPersonRouter
             return
         }
 
-
         const newPersonPosition = new PersonPositionRecord({personId, position, salary});
         await newPersonPosition.insert();
 
         responseMessage = {
-            message: `Person ${name} ${surName} with id ${personId} has been added with position: ${position} and salary ${salary}`,
+            message: `Person ${name} ${surname} with id ${personId} has been added with position: ${position} and salary ${salary}`,
             status: 'success'
         }
         res.json(responseMessage)
-
     })
 
 

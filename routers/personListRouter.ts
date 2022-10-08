@@ -1,8 +1,8 @@
 import {Router} from "express";
 import {PersonRecord} from "../records/person.record";
-import {InsertedPersonRes} from "../types/person";
 import {PersonPositionRecord} from "../records/personPosition.record";
-import {sendDataType} from "../types/personPosition/personUpdatedList";
+import {sendDataType} from "../types/personPosition";
+
 
 
 export const personListRouter = Router();

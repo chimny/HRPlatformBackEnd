@@ -1,11 +1,8 @@
-import {PositionList} from "./positionList";
 
-export interface PersonUpdatedList {
-    name: string;
-    surName: string;
+import {NewPersonPosition} from "../newPesonPosition";
+
+export interface PersonUpdatedList extends NewPersonPosition{
     personId: string;
-    position: PositionList;
-    salary: number
 }
 
 export type sendDataType = PersonUpdatedList[];
