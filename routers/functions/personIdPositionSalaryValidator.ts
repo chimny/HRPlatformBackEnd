@@ -4,7 +4,7 @@ import {PositionList} from "../../types/personPosition";
 export async function personIdPositionSalaryValidator(personId: string, position: string, salary: string): Promise<string | boolean> {
     const errors: string[] = [];
     const peopleList = await PersonRecord.listAll();
-    const positionList: PositionList[] = ['Assistant', 'Manager', "Specialist", 'Junior Specialist', 'Trainee'];
+    const positionList: PositionList[] = ['Assistant', 'Manager', "Specialist", 'Junior Specialist', 'Trainee','Senior Specialist'];
 
     if (!peopleList.find(el => el.id === personId)) {
         errors.push('person not found')
