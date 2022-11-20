@@ -1,1 +1,5 @@
-@todo implement types
+export interface PositionDescriptionEntity{
+    id?: string ;
+    position: string;
+    description: string;
+}
