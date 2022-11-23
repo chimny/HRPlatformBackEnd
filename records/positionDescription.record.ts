@@ -16,14 +16,14 @@ export class PositionDescriptionRecord implements PositionDescriptionEntity {
         }
 
         this.id = obj.id;
-        this.position = obj.description;
+        this.position = obj.position;
         this.description = obj.description
     }
 
 
 
     static async listAll(): Promise<PositionDescriptionRecord[]> {
-        const [results] = (await pool.execute("SELECT * FROM `position_description` ORDER BY `position` ")) as PositionDescriptionRecordResults;
+        const [results] = (await pool.execute("SELECT `position`,`description`  FROM `position_description` ORDER BY `position level` ")) as PositionDescriptionRecordResults;
         return results.map(obj => new PositionDescriptionRecord(obj));
     }
 

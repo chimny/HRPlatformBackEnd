@@ -3,6 +3,7 @@ import * as cors from 'cors';
 import {handleError} from "./utils/error";
 import {addPersonRouter} from "./routers/addPersonRouter";
 import {personListRouter} from "./routers/personListRouter";
+import {positionRouter} from "./routers/positionRouter";
 
 
 const app = express();
@@ -14,7 +15,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/addPerson', addPersonRouter);
-app.use('/personList',personListRouter)
+app.use('/personList',personListRouter);
+app.use('/positions',positionRouter)
 
 
 app.use(handleError);
