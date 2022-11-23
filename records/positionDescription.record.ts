@@ -6,7 +6,6 @@ import {PositionDescriptionEntity} from "../types/positionDescription";
 type PositionDescriptionRecordResults = [PositionDescriptionRecord[], FieldPacket[]];
 
 export class PositionDescriptionRecord implements PositionDescriptionEntity {
-    public id?: string;
     public position: string;
     public description: string;
 
@@ -15,7 +14,6 @@ export class PositionDescriptionRecord implements PositionDescriptionEntity {
             throw new ValidationError('Position and description cannot be empty!')
         }
 
-        this.id = obj.id;
         this.position = obj.position;
         this.description = obj.description
     }
