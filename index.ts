@@ -4,6 +4,7 @@ import {handleError} from "./utils/error";
 import {addPersonRouter} from "./routers/addPersonRouter";
 import {personListRouter} from "./routers/personListRouter";
 import {positionRouter} from "./routers/positionRouter";
+import {testRouter} from "./routers/testRouter";
 
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/addPerson', addPersonRouter);
 app.use('/personList', personListRouter);
 app.use('/positions', positionRouter)
+app.use('/testRouter', testRouter)
 
 
 app.use(handleError);
