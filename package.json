@@ -11,7 +11,7 @@
     "start": "node ./dist/index.js",
     "start:dev": "tsnd index.ts",
 
-    "build": "npm i && tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
