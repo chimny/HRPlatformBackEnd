@@ -5,13 +5,13 @@ import {addPersonRouter} from "./routers/addPersonRouter";
 import {personListRouter} from "./routers/personListRouter";
 import {positionRouter} from "./routers/positionRouter";
 import {testRouter} from "./routers/testRouter";
-
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: `http://localhost:${PORT}`
 }));
 app.use(express.json());
 
