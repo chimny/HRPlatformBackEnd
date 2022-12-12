@@ -10,7 +10,8 @@
     "oldStart": "ts-node index.ts",
     "start": "node ./dist/index.js",
     "start:dev": "tsnd index.ts",
-    "build": "tsc"
+
+    "build": "npm i && tsc"
   },
   "keywords": [],
   "author": "",
