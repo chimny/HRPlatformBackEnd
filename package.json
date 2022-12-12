@@ -8,9 +8,9 @@
   },
   "scripts": {
     "oldStart": "ts-node index.ts",
-    "start": "node index.js",
+    "start": "node ./dist/index.js",
     "start:dev": "tsnd index.ts",
-    "buid": "tsc"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
