@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
-    "start": "ts-node index.ts",
+    "oldStart": "ts-node index.ts",
+    "start": "node index.js",
     "start:dev": "tsnd index.ts",
     "buid": "tsc"
   },
