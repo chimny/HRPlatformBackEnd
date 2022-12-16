@@ -5,7 +5,7 @@ import {addPersonRouter} from "./routers/addPersonRouter";
 import {personListRouter} from "./routers/personListRouter";
 import {positionRouter} from "./routers/positionRouter";
 import {testRouter} from "./routers/testRouter";
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
