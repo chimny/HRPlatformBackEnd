@@ -24,7 +24,7 @@ app.use('/testRouter', testRouter)
 
 app.use(handleError);
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(3001, '0.0.0.0', () => {
     console.log('listening on http://0.0.0.0:3001');
 })
 

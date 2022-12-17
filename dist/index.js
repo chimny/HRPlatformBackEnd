@@ -13,7 +13,7 @@ const testRouter_1 = require("./routers/testRouter");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: `http://localhost:${PORT}`
+    origin: ` http://localhost:3000`,
 }));
 app.use(express_1.default.json());
 app.use('/addPerson', addPersonRouter_1.addPersonRouter);
