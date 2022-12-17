@@ -11,7 +11,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: ` http://localhost:${PORT}`
+    origin: ` http://localhost:3000`,
 
 }));
 app.use(express.json());
@@ -24,7 +24,7 @@ app.use('/testRouter', testRouter)
 
 app.use(handleError);
 
-app.listen(3001, '0.0.0.0', () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log('listening on http://0.0.0.0:3001');
 })
 
