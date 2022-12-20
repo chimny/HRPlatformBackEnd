@@ -10,8 +10,11 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 
+const hostedDomain = 'https://chimny.github.io/HRPlatformFrontEnd/';
+const localDomain = ` http://localhost:3000`;
+
 app.use(cors({
-    origin: ` http://localhost:3000`,
+    origin: hostedDomain,
 
 }));
 app.use(express.json());
