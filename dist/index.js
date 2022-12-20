@@ -12,7 +12,7 @@ const positionRouter_1 = require("./routers/positionRouter");
 const testRouter_1 = require("./routers/testRouter");
 const PORT = process.env.PORT || 3000;
 const app = (0, express_1.default)();
-const hostedDomain = 'https://chimny.github.io/HRPlatformFrontEnd/';
+const hostedDomain = 'https://chimny.github.io';
 const localDomain = ` http://localhost:3000`;
 app.use((0, cors_1.default)({
     origin: hostedDomain,
