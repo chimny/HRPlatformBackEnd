@@ -14,7 +14,7 @@ const hostedDomain = 'https://chimny.github.io';
 const localDomain = ` http://localhost:3000`;
 
 app.use(cors({
-    origin: [hostedDomain,localDomain],
+    origin: [localDomain],
 }));
 
 
