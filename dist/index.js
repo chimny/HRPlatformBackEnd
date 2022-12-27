@@ -15,7 +15,10 @@ const app = (0, express_1.default)();
 const hostedDomain = 'https://chimny.github.io';
 const localDomain = ` http://localhost:3000`;
 app.use((0, cors_1.default)({
-    origin: [hostedDomain, localDomain],
+    origin: hostedDomain,
+}));
+app.use((0, cors_1.default)({
+    origin: localDomain,
 }));
 app.use(express_1.default.json());
 app.use('/addPerson', addPersonRouter_1.addPersonRouter);
