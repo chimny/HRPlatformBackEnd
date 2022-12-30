@@ -21,8 +21,6 @@ export class PersonPositionRecord implements PersonPositionEntity {
         if (!obj.personId || !obj.position) throw new ValidationError('Person ID and position must be added!');
         if (obj.salary < 0) throw new ValidationError('Salary cannot be below 0!');
 
-
-        // this.id = obj.id;
         this.personId = obj.personId;
         this.position = obj.position;
         this.salary = obj.salary
@@ -37,7 +35,6 @@ export class PersonPositionRecord implements PersonPositionEntity {
 
 
     static async updateOne(personId: string, position: string, salary: number): Promise<string> {
-
         await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
             position, salary, personId
         })
@@ -49,7 +46,6 @@ export class PersonPositionRecord implements PersonPositionEntity {
 
 
     static async getOne(personId: string): Promise<PersonPositionRecord | null> {
-
         const [results] = await pool.execute("SELECT * FROM `peoplelist_positions` WHERE `personId`=:personId", {
             personId
         }) as PersonPositionRecordResults
@@ -76,29 +72,6 @@ export class PersonPositionRecord implements PersonPositionEntity {
     }
 
 
-
-/*
-
-
-
-
-
-
-
-
-
-
-    static async deleteOne(id: string): Promise<string>{
-
-        await pool.execute("DELETE FROM `peoplelist_positions` WHERE `id`=:id", {
-            id
-        })
-
-        return 'user has been deleted';
-    }
-
-
-*/
 
 
 }
