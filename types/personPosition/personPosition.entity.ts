@@ -7,3 +7,5 @@ export interface PersonPositionEntity {
     salary: number;
 }
 
+
+

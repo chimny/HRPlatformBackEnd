@@ -5,9 +5,8 @@ export interface PersonEntity{
 }
 
 
-type resStatus = 'success' | 'error'
 
 export interface InsertedPersonRes{
     message: string;
-    status: resStatus;
+    status: 'success' | 'error';
 }

@@ -1,7 +1,7 @@
 import {Router} from "express";
 import {PersonRecord} from "../records/person.record";
 import {PersonPositionRecord} from "../records/personPosition.record";
-import {sendDataType} from "../types/personPosition";
+import {PersonPositionDataInterface} from "../types/personPositionData";
 
 
 
@@ -15,11 +15,11 @@ personListRouter
 
         const peopleList = await PersonRecord.listAll();
         const personPositionList = await PersonPositionRecord.listAll()
-        const personPositionData: sendDataType = [];
+        const personPositionCombinedData: PersonPositionDataInterface[] = [];
 
         for (const person of peopleList) {
             personPositionList.forEach(personPosition => {
-                personPosition.personId === person.id ? personPositionData.push({
+                personPosition.personId === person.id ? personPositionCombinedData.push({
                     ...personPosition,
                     name: person.name,
                     surName: person.surName
@@ -28,7 +28,7 @@ personListRouter
         }
 
         res.json({
-            personPositionData
+            personPositionData: personPositionCombinedData
         })
     })
 

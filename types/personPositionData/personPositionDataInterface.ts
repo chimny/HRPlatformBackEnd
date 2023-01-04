@@ -1,7 +1,7 @@
 import {PositionList} from "../personPosition";
 
 
-export interface NewPersonPosition {
+export interface PersonPositionDataInterface {
     personId:string;
     name: string;
     surName: string;
