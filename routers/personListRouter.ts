@@ -4,7 +4,6 @@ import {PersonPositionRecord} from "../records/personPosition.record";
 import {PersonPositionDataInterface} from "../types/personPositionData";
 
 
-
 export const personListRouter = Router();
 
 
@@ -16,6 +15,18 @@ personListRouter
         const peopleList = await PersonRecord.listAll();
         const personPositionList = await PersonPositionRecord.listAll()
         const personPositionCombinedData: PersonPositionDataInterface[] = [];
+
+
+        /*
+        * instead of looping two objects create combined record using folllowing sql query
+        *
+        *
+        *
+ SELECT peoplelist.name, peoplelist.surName, peoplelist_positions.position FROM peoplelist
+LEFT JOIN peoplelist_positions
+ON peoplelist_positions.personId = peoplelist.id
+        *
+        * */
 
         for (const person of peopleList) {
             personPositionList.forEach(personPosition => {
@@ -31,7 +42,6 @@ personListRouter
             personPositionData: personPositionCombinedData
         })
     })
-
 
 
     .get('/chosenPerson/:personID', async (req, res) => {
@@ -50,7 +60,6 @@ personListRouter
             chosenPersonData
         })
     })
-
 
 
     .delete('/deletePerson/:personID', async (req, res) => {
