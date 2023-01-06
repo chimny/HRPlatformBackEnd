@@ -2,6 +2,7 @@ import {Router} from "express";
 import {PersonRecord} from "../records/person.record";
 import {PersonPositionRecord} from "../records/personPosition.record";
 import {PersonPositionDataInterface} from "../types/personPositionData";
+import {CompletePersonWithPosition} from "../records/completePersonWithPosition.record";
 
 
 export const personListRouter = Router();
@@ -12,35 +13,34 @@ personListRouter
 
     .get('/', async (req, res) => {
 
-        const peopleList = await PersonRecord.listAll();
-        const personPositionList = await PersonPositionRecord.listAll()
-        const personPositionCombinedData: PersonPositionDataInterface[] = [];
+  //       const peopleList = await PersonRecord.listAll();
+  //       const personPositionList = await PersonPositionRecord.listAll()
+  //        const personPositionCombinedData: PersonPositionDataInterface[] = [];
+  //
+  //        for (const person of peopleList) {
+  //     personPositionList.forEach(personPosition => {
+  //         personPosition.personId === person.id ? personPositionCombinedData.push({
+  //             ...personPosition,
+  //             name: person.name,
+  //             surName: person.surName
+  //         }) : null
+  //     })
+  // }
+  //
+  //       res.json({
+  //           personPositionData: personPositionCombinedData
+  //       })
 
 
-        /*
-        * instead of looping two objects create combined record using folllowing sql query
-        *
-        *
-        *
- SELECT peoplelist.name, peoplelist.surName, peoplelist_positions.position FROM peoplelist
-LEFT JOIN peoplelist_positions
-ON peoplelist_positions.personId = peoplelist.id
-        *
-        * */
-
-        for (const person of peopleList) {
-            personPositionList.forEach(personPosition => {
-                personPosition.personId === person.id ? personPositionCombinedData.push({
-                    ...personPosition,
-                    name: person.name,
-                    surName: person.surName
-                }) : null
-            })
-        }
+        const personPositionCombinedData: PersonPositionDataInterface[] =  await CompletePersonWithPosition.listAll();
 
         res.json({
             personPositionData: personPositionCombinedData
         })
+
+
+
+
     })
 
 
@@ -55,6 +55,8 @@ ON peoplelist_positions.personId = peoplelist.id
             name: chosenPerson.name,
             surName: chosenPerson.surName
         }
+
+
 
         res.json({
             chosenPersonData

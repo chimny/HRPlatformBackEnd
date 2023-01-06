@@ -6,9 +6,9 @@ import {FieldPacket} from "mysql2";
 import {PersonPositionDataInterface} from "../types/personPositionData";
 import {PositionList} from "../types/personPosition";
 
-type ComlpetePersonWithPositionResults = [ComlpetePersonWithPosition[], FieldPacket[]];
+type ComlpetePersonWithPositionResults = [CompletePersonWithPosition[], FieldPacket[]];
 
-export class ComlpetePersonWithPosition implements PersonPositionDataInterface {
+export class CompletePersonWithPosition implements PersonPositionDataInterface {
     public personId: string;
     public name: string;
     public surName: string;
@@ -17,9 +17,9 @@ export class ComlpetePersonWithPosition implements PersonPositionDataInterface {
 
     constructor(obj: PersonPositionDataInterface) {
         //@todo add adtional validation
-        if (!obj.name || !obj.surName) {
-            throw new ValidationError('Name or Surname cannot be empty!')
-        }
+        // if (!obj.name || !obj.surName) {
+        //     throw new ValidationError('Name or Surname cannot be empty!')
+        // }
 
         const {personId, name, surName, salary, position} = obj
         this.personId = personId;
@@ -30,20 +30,29 @@ export class ComlpetePersonWithPosition implements PersonPositionDataInterface {
     }
 
 
-    static async listAll(): Promise<ComlpetePersonWithPosition[]> {
+    static async listAll(): Promise<CompletePersonWithPosition[]> {
+
+
+
+        const [results] =    (await  pool.execute( "SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id ")) as ComlpetePersonWithPositionResults;
+
+
         // const [results] = (await pool.execute("SELECT * FROM `peoplelist` ORDER BY `surName` ")) as PersonRecordResults;
 
-        //@todo follow this below
-        const [results] =    (await  pool.execute( `SELECT peoplelist.name, peoplelist.surName, peoplelist_positions.position FROM peoplelist
-        LEFT JOIN peoplelist_positions
-        ON peoplelist_positions.personId = peoplelist.id` )) as ComlpetePersonWithPositionResults;
-
-
-        return results.map(obj => new ComlpetePersonWithPosition(obj));
+        return results.map(obj => new CompletePersonWithPosition(obj));
     }
+
+
+
 
 
 }
 
+/*
+*
+*         await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
+            position, salary, personId
+        })
+* */
 
 
