@@ -10,18 +10,13 @@ exports.pool = (0, promise_1.createPool)({
     namedPlaceholders: true,
     decimalNumbers: true,
 });
-/*
-* below pool for localhost connection
-*
-*
-*
-* export const pool = createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'hr_platform',
-    namedPlaceholders: true,
-    decimalNumbers: true,
-});
-*
-* */
+// below pool for localhost connection
+//
+//  export const pool = createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'hr_platform',
+//     namedPlaceholders: true,
+//     decimalNumbers: true,
+// });
 //# sourceMappingURL=db.js.map

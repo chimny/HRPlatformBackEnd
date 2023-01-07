@@ -19,7 +19,6 @@ class PersonPositionRecord {
             throw new error_1.ValidationError('Person ID and position must be added!');
         if (obj.salary < 0)
             throw new error_1.ValidationError('Salary cannot be below 0!');
-        // this.id = obj.id;
         this.personId = obj.personId;
         this.position = obj.position;
         this.salary = obj.salary;

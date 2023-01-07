@@ -13,19 +13,30 @@ exports.personListRouter = void 0;
 const express_1 = require("express");
 const person_record_1 = require("../records/person.record");
 const personPosition_record_1 = require("../records/personPosition.record");
+const completePersonWithPosition_record_1 = require("../records/completePersonWithPosition.record");
 exports.personListRouter = (0, express_1.Router)();
 exports.personListRouter
     .get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const peopleList = yield person_record_1.PersonRecord.listAll();
-    const personPositionList = yield personPosition_record_1.PersonPositionRecord.listAll();
-    const personPositionData = [];
-    for (const person of peopleList) {
-        personPositionList.forEach(personPosition => {
-            personPosition.personId === person.id ? personPositionData.push(Object.assign(Object.assign({}, personPosition), { name: person.name, surName: person.surName })) : null;
-        });
-    }
+    //       const peopleList = await PersonRecord.listAll();
+    //       const personPositionList = await PersonPositionRecord.listAll()
+    //        const personPositionCombinedData: PersonPositionDataInterface[] = [];
+    //
+    //        for (const person of peopleList) {
+    //     personPositionList.forEach(personPosition => {
+    //         personPosition.personId === person.id ? personPositionCombinedData.push({
+    //             ...personPosition,
+    //             name: person.name,
+    //             surName: person.surName
+    //         }) : null
+    //     })
+    // }
+    //
+    //       res.json({
+    //           personPositionData: personPositionCombinedData
+    //       })
+    const personPositionCombinedData = yield completePersonWithPosition_record_1.CompletePersonWithPosition.listAll();
     res.json({
-        personPositionData
+        personPositionData: personPositionCombinedData
     });
 }))
     .get('/chosenPerson/:personID', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
