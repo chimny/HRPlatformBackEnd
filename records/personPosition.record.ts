@@ -9,6 +9,9 @@ import {PersonPositionEntity,PositionList} from "../types/personPosition";
 
 type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
+
+
+
 export class PersonPositionRecord implements PersonPositionEntity {
 
     id?: string;

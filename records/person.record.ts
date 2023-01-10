@@ -6,6 +6,7 @@ import {FieldPacket} from "mysql2";
 
 type PersonRecordResults = [PersonRecord[], FieldPacket[]];
 
+
 export class PersonRecord implements PersonEntity {
     public id?: string;
     public name: string;
