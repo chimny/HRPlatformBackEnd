@@ -2,15 +2,21 @@ import {personIdPositionSalaryValidator} from "./personIdPositionSalaryValidator
 import {PersonRecord} from "../../records/person.record";
 
 
+jest.mock('../../records/person.record', () => {
+
+    //@todo further work on unit tests
+    return {
+        PersonRecord: {
+            listAll: jest.fn(() => Promise.resolve([
+                {id: '1', name: 'John Doe', age: 25},
+                {id: '2', name: 'Jane Smith', age: 30},
+                {id: '2', name: '12-9', age: -30},
+            ]))
+        }
+    }
 
 
-
-jest.mock('../../records/person.record', () => ({
-    listAll: jest.fn(() => [
-        { id: '1', name: 'John Doe', age: 25 },
-        { id: '2', name: 'Jane Smith', age: 30 },
-    ])
-}));
+});
 
 describe('personIdPositionSalaryValidator', () => {
     test('should return error message if person is not found', async () => {

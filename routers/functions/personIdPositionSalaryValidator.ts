@@ -11,7 +11,7 @@ export async function personIdPositionSalaryValidator(personId: string, position
     }
 
     if (Number(salary) < 0) {
-        errors.push('salary below 0')
+        errors.push('salary is below 0')
     }
 
     if (isNaN(Number(salary))) {
