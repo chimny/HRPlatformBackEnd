@@ -4,7 +4,7 @@ import {PersonRecord} from "../../records/person.record";
 
 jest.mock('../../records/person.record', () => {
 
-    //@todo further work on unit tests
+
     return {
         PersonRecord: {
             listAll: jest.fn(() => Promise.resolve([

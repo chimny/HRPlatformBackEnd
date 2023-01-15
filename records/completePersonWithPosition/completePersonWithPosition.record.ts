@@ -1,9 +1,9 @@
-import {ValidationError} from "../utils/error";
-import {pool} from "../utils/db";
+import {ValidationError} from "../../utils/error";
+import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
-import {PersonPositionDataInterface} from "../types/personPositionData";
-import {PositionList} from "../types/personPosition";
-import {PersonPositionRecord} from "./personPosition.record";
+import {PersonPositionDataInterface} from "../../types/personPositionData";
+import {PositionList} from "../../types/personPosition";
+import {PersonPositionRecord} from "../personPosition.record";
 
 type CompletePersonWithPositionResults = [CompletePersonWithPosition[], FieldPacket[]];
 
@@ -36,6 +36,8 @@ export class CompletePersonWithPosition implements PersonPositionDataInterface {
 
 
     static async listAll(): Promise<CompletePersonWithPosition[]> {
+
+
 
         const [results] = (await pool.execute("SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id ")) as CompletePersonWithPositionResults;
         return results.map(obj => new CompletePersonWithPosition(obj));
