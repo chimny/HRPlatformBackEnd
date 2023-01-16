@@ -1,5 +1,5 @@
-import {personIdPositionSalaryValidator} from "./personIdPositionSalaryValidator";
-import {PersonRecord} from "../../records/person/person.record";
+import {personIdPositionSalaryValidator} from "../personIdPositionSalaryValidator";
+import {PersonRecord} from "../../../records/person/person.record";
 
 
 jest.mock('../../records/person.record', () => {
