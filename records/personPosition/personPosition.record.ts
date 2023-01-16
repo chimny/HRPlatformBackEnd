@@ -1,8 +1,8 @@
-import {ValidationError} from "../utils/error";
+import {ValidationError} from "../../utils/error";
 import {v4 as uuid} from 'uuid';
-import {pool} from "../utils/db";
+import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
-import {PersonPositionEntity,PositionList} from "../types/personPosition";
+import {PersonPositionEntity,PositionList} from "../../types/personPosition";
 
 
 

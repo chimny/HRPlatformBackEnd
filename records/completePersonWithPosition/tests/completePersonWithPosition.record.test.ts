@@ -1,10 +1,8 @@
 import { CompletePersonWithPosition } from "../completePersonWithPosition.record";
-import {completePersonWithPositionMock} from "./completePersonWithPositionMock";
+
 import {pool} from "../../../utils/db";
 
 
-
-//@todo pracować dalej nad testem z importowanym mock'iem
 
 jest.mock('../../../utils/db', () => {
     return {
@@ -29,13 +27,10 @@ jest.mock('../../../utils/db', () => {
     };
 });
 
-// completePersonWithPositionMock()
 
 describe('CompletePersonWithPosition', () => {
 
-    beforeAll(() => {
-        completePersonWithPositionMock()
-    });
+
 
     test('should return a list of all people with their positions and salaries', async () => {
         const people = await CompletePersonWithPosition.listAll();
@@ -55,10 +50,6 @@ describe('CompletePersonWithPosition', () => {
                 salary: 4000
             }
         ]);
-    });
-
-    afterAll(() => {
-        pool.end()
     });
 
 });

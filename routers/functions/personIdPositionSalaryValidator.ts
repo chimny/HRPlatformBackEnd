@@ -1,4 +1,4 @@
-import {PersonRecord} from "../../records/person.record";
+import {PersonRecord} from "../../records/person/person.record";
 import {PositionList} from "../../types/personPosition";
 
 export async function personIdPositionSalaryValidator(personId: string, position: string, salary: string): Promise<string | boolean> {

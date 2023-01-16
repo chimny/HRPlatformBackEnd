@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {PositionDescriptionRecord} from "../records/positionDescription.record";
+import {PositionDescriptionRecord} from "../records/positionDescription/positionDescription.record";
 
 
 

@@ -1,6 +1,6 @@
 import {Router} from "express";
-import {PersonRecord} from "../records/person.record";
-import {PersonPositionRecord} from "../records/personPosition.record";
+import {PersonRecord} from "../records/person/person.record";
+import {PersonPositionRecord} from "../records/personPosition/personPosition.record";
 import {PersonPositionDataInterface} from "../types/personPositionData";
 import {CompletePersonWithPosition} from "../records/completePersonWithPosition/completePersonWithPosition.record";
 

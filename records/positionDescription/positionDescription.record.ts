@@ -1,7 +1,7 @@
-import {ValidationError} from "../utils/error";
-import {pool} from "../utils/db";
+import {ValidationError} from "../../utils/error";
+import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
-import {PositionDescriptionEntity} from "../types/positionDescription";
+import {PositionDescriptionEntity} from "../../types/positionDescription";
 
 type PositionDescriptionRecordResults = [PositionDescriptionRecord[], FieldPacket[]];
 

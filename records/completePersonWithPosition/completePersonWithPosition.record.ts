@@ -3,7 +3,7 @@ import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
 import {PersonPositionDataInterface} from "../../types/personPositionData";
 import {PositionList} from "../../types/personPosition";
-import {PersonPositionRecord} from "../personPosition.record";
+import {PersonPositionRecord} from "../personPosition/personPosition.record";
 
 type CompletePersonWithPositionResults = [CompletePersonWithPosition[], FieldPacket[]];
 

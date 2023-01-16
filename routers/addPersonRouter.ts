@@ -1,8 +1,8 @@
 import {InsertedPersonRes} from "../types/person";
 import {personIdPositionSalaryValidator} from "./functions/personIdPositionSalaryValidator";
-import {PersonPositionRecord} from "../records/personPosition.record";
+import {PersonPositionRecord} from "../records/personPosition/personPosition.record";
 import {Router} from "express";
-import {PersonRecord} from "../records/person.record";
+import {PersonRecord} from "../records/person/person.record";
 
 
 export const addPersonRouter = Router();
