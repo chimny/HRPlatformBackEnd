@@ -1,8 +1,7 @@
 import {personIdPositionSalaryValidator} from "../personIdPositionSalaryValidator";
-import {PersonRecord} from "../../../records/person/person.record";
 
 
-jest.mock('../../records/person.record', () => {
+jest.mock('../../../records/person/person.record', () => {
 
 
     return {

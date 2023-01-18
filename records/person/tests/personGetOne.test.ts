@@ -12,13 +12,12 @@ jest.mock('../../../utils/db', () => {
     };
 });
 
-describe('listAll', () => {
-    test('should return a list of all people', async () => {
-        const people = await PersonRecord.listAll();
-        expect(people).toEqual([
+describe('get one', () => {
+    test('should return single object with passed id', async () => {
+        const people = await PersonRecord.getOne('123');
+        expect(people).toEqual(
             {id: '123', name: 'John', surName: 'Doe'},
-            {id: '456', name: 'Jane', surName: 'Doe'},
-        ]);
+        );
     });
 
     afterEach(() => {
