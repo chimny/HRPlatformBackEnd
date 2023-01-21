@@ -4,7 +4,7 @@ export const pool = createPool({
     host: 'sql11.freemysqlhosting.net',
     user: 'sql11592221',
     database: 'sql11592221',
-    password:'gEcLdClSM',
+    password:'2gEcLdClSM',
     namedPlaceholders: true,
     decimalNumbers: true,
 });
