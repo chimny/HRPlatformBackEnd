@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.personIdPositionSalaryValidator = void 0;
-const person_record_1 = require("../../records/person.record");
+const person_record_1 = require("../../records/person/person.record");
 function personIdPositionSalaryValidator(personId, position, salary) {
     return __awaiter(this, void 0, void 0, function* () {
         const errors = [];
@@ -20,7 +20,7 @@ function personIdPositionSalaryValidator(personId, position, salary) {
             errors.push('person not found');
         }
         if (Number(salary) < 0) {
-            errors.push('salary below 0');
+            errors.push('salary is below 0');
         }
         if (isNaN(Number(salary))) {
             errors.push('sent salary is not a number!');

@@ -11,9 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addPersonRouter = void 0;
 const personIdPositionSalaryValidator_1 = require("./functions/personIdPositionSalaryValidator");
-const personPosition_record_1 = require("../records/personPosition.record");
+const personPosition_record_1 = require("../records/personPosition/personPosition.record");
 const express_1 = require("express");
-const person_record_1 = require("../records/person.record");
+const person_record_1 = require("../records/person/person.record");
 exports.addPersonRouter = (0, express_1.Router)();
 exports.addPersonRouter
     .post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
