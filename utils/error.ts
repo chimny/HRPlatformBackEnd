@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 
 export class ValidationError extends Error {}
 
-export const handleError = (err: Error, req: Request, res: Response): void => {
+ const handleError = (err: Error, req: Request, res: Response): void => {
 
     console.error(err);
 
@@ -12,3 +12,5 @@ export const handleError = (err: Error, req: Request, res: Response): void => {
             message: err instanceof ValidationError ? err.message : 'Sorry, please try again later.',
         });
 };
+
+export default handleError;

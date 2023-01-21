@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
-const error_1 = require("./utils/error");
+const error_1 = __importDefault(require("./utils/error"));
 const addPersonRouter_1 = __importDefault(require("./routers/addPersonRouter"));
 const personListRouter_1 = __importDefault(require("./routers/personListRouter"));
 const positionRouter_1 = __importDefault(require("./routers/positionRouter"));
@@ -19,7 +19,7 @@ app.use(express_1.default.json());
 app.use('/addPerson', addPersonRouter_1.default);
 app.use('/personList', personListRouter_1.default);
 app.use('/positions', positionRouter_1.default);
-app.use(error_1.handleError);
+app.use(error_1.default);
 app.listen(process.env.PORT || 3001, () => {
     console.log('listening on http://0.0.0.0:3001');
 });

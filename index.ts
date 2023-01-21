@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import {handleError} from "./utils/error";
+import handleError from "./utils/error";
 import addPersonRouter from "./routers/addPersonRouter";
 import personListRouter from "./routers/personListRouter";
 import positionRouter from "./routers/positionRouter";

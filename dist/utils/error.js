@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.handleError = exports.ValidationError = void 0;
+exports.ValidationError = void 0;
 class ValidationError extends Error {
 }
 exports.ValidationError = ValidationError;
@@ -12,5 +12,5 @@ const handleError = (err, req, res) => {
         message: err instanceof ValidationError ? err.message : 'Sorry, please try again later.',
     });
 };
-exports.handleError = handleError;
+exports.default = handleError;
 //# sourceMappingURL=error.js.map
