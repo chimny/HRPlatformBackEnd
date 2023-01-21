@@ -13,7 +13,7 @@ const app = (0, express_1.default)();
 const hostedDomain = 'https://chimny.github.io';
 const localDomain = `http://localhost:3000`;
 app.use((0, cors_1.default)({
-    origin: [localDomain, hostedDomain, 'https://hr-platform-back-end-hcnj.vercel.app/'],
+    origin: [localDomain, hostedDomain, 'https://hr-platform-back-end-hcnj.vercel.app/', 'http://hr-platform-back-end-hcnj-git-main-chimny.vercel.app/', 'http://hr-platform-back-end-hcnj.vercel.app/'],
 }));
 app.use(express_1.default.json());
 app.use('/addPerson', addPersonRouter_1.addPersonRouter);
