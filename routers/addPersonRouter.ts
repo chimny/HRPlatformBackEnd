@@ -5,7 +5,7 @@ import {Router} from "express";
 import {PersonRecord} from "../records/person/person.record";
 
 
-export const addPersonRouter = Router();
+ const addPersonRouter = Router();
 
 addPersonRouter
     .post('/', async (req, res) => {
@@ -47,5 +47,7 @@ addPersonRouter
         res.json(responseMessage)
     })
 
+
+export default addPersonRouter;
 
 

@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.positionRouter = void 0;
 const express_1 = require("express");
 const positionDescription_record_1 = require("../records/positionDescription/positionDescription.record");
-exports.positionRouter = (0, express_1.Router)();
-exports.positionRouter
+const positionRouter = (0, express_1.Router)();
+positionRouter
     .get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(yield positionDescription_record_1.PositionDescriptionRecord.listAll());
 }));
+exports.default = positionRouter;
 //# sourceMappingURL=positionRouter.js.map

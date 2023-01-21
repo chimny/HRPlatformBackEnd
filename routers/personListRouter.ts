@@ -5,7 +5,7 @@ import {PersonPositionDataInterface} from "../types/personPositionData";
 import {CompletePersonWithPosition} from "../records/completePersonWithPosition/completePersonWithPosition.record";
 
 
-export const personListRouter = Router();
+ const personListRouter = Router();
 
 
 personListRouter
@@ -102,4 +102,5 @@ personListRouter
         }
     )
 
+export default personListRouter;
 

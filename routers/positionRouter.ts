@@ -3,7 +3,7 @@ import {PositionDescriptionRecord} from "../records/positionDescription/position
 
 
 
-export const positionRouter = Router();
+ const positionRouter = Router();
 
 
 positionRouter
@@ -12,6 +12,8 @@ positionRouter
             await PositionDescriptionRecord.listAll()
         )
     })
+
+export default positionRouter;
 
 
 

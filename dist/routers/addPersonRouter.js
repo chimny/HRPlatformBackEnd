@@ -9,13 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addPersonRouter = void 0;
 const personIdPositionSalaryValidator_1 = require("./functions/personIdPositionSalaryValidator");
 const personPosition_record_1 = require("../records/personPosition/personPosition.record");
 const express_1 = require("express");
 const person_record_1 = require("../records/person/person.record");
-exports.addPersonRouter = (0, express_1.Router)();
-exports.addPersonRouter
+const addPersonRouter = (0, express_1.Router)();
+addPersonRouter
     .post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let responseMessage;
     const { name, surname, position, salary } = req.body;
@@ -48,4 +47,5 @@ exports.addPersonRouter
     };
     res.json(responseMessage);
 }));
+exports.default = addPersonRouter;
 //# sourceMappingURL=addPersonRouter.js.map

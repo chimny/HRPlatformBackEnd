@@ -9,13 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.personListRouter = void 0;
 const express_1 = require("express");
 const person_record_1 = require("../records/person/person.record");
 const personPosition_record_1 = require("../records/personPosition/personPosition.record");
 const completePersonWithPosition_record_1 = require("../records/completePersonWithPosition/completePersonWithPosition.record");
-exports.personListRouter = (0, express_1.Router)();
-exports.personListRouter
+const personListRouter = (0, express_1.Router)();
+personListRouter
     .get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //       const peopleList = await PersonRecord.listAll();
     //       const personPositionList = await PersonPositionRecord.listAll()
@@ -73,4 +72,5 @@ exports.personListRouter
         message: 'person has not been found'
     });
 }));
+exports.default = personListRouter;
 //# sourceMappingURL=personListRouter.js.map

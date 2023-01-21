@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import {handleError} from "./utils/error";
-import {addPersonRouter} from "./routers/addPersonRouter";
-import {personListRouter} from "./routers/personListRouter";
-import {positionRouter} from "./routers/positionRouter";
+import addPersonRouter from "./routers/addPersonRouter";
+import personListRouter from "./routers/personListRouter";
+import positionRouter from "./routers/positionRouter";
 
 
 const app = express();
@@ -27,9 +27,6 @@ app.use('/positions', positionRouter)
 
 app.use(handleError);
 
-// app.listen(3001, '0.0.0.0', () => {
-//     console.log('listening on http://0.0.0.0:3001');
-// })
 
 app.listen(process.env.PORT || 3001, () => {
     console.log('listening on http://0.0.0.0:3001');
