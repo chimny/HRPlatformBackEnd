@@ -21,7 +21,7 @@ export const pool = createPool({
  // below pool for localhost connection
 
 
-//
+
 //  export const pool = createPool({
 //     host: 'localhost',
 //     user: 'root',

@@ -16,7 +16,6 @@ exports.pool = (0, promise_1.createPool)({
 // Password: 2gEcLdClSM
 // Port number: 3306
 // below pool for localhost connection
-//
 //  export const pool = createPool({
 //     host: 'localhost',
 //     user: 'root',
