@@ -13,7 +13,7 @@ const hostedDomain = 'https://chimny.github.io';
 const localDomain = `http://localhost:3000`;
 
 app.use(cors({
-    origin: [localDomain,hostedDomain],
+    origin: [localDomain,hostedDomain,'https://hr-platform-back-end-hcnj.vercel.app/'],
 }));
 
 
@@ -27,10 +27,13 @@ app.use('/positions', positionRouter)
 
 app.use(handleError);
 
-app.listen(3001, '0.0.0.0', () => {
+// app.listen(3001, '0.0.0.0', () => {
+//     console.log('listening on http://0.0.0.0:3001');
+// })
+
+app.listen(process.env.PORT || 3001, () => {
     console.log('listening on http://0.0.0.0:3001');
 })
-
 
 
 
