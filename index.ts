@@ -13,10 +13,8 @@ const hostedDomain = 'https://chimny.github.io';
 const localDomain = `http://localhost:3000`;
 
 app.use(cors({
-    // origin: [localDomain,hostedDomain,'https://hr-platform-back-end-hcnj.vercel.app/','http://hr-platform-back-end-hcnj-git-main-chimny.vercel.app/','http://hr-platform-back-end-hcnj.vercel.app/'],
-    origin: "*",
+    origin: [localDomain, hostedDomain],
 }));
-
 
 
 app.use(express.json());

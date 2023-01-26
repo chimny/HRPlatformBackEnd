@@ -77,14 +77,14 @@ export class PersonRecord implements PersonEntity {
         return 'user has been deleted';
     }
 
-    static async updateOne(id: string, name: string, surName: string): Promise<string> {
+    static async updateOne(id: string, name: string, surName: string): Promise<object> {
 
         await pool.execute("UPDATE `peoplelist` SET `surName`=:surName, `name`=:name WHERE `id`=:id", {
             name,surName, id
         })
 
 
-        return id;
+        return {id,name,surName};
 
     }
 
