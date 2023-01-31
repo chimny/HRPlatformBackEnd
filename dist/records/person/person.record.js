@@ -70,7 +70,7 @@ class PersonRecord {
             yield db_1.pool.execute("UPDATE `peoplelist` SET `surName`=:surName, `name`=:name WHERE `id`=:id", {
                 name, surName, id
             });
-            return id;
+            return { id, name, surName };
         });
     }
 }

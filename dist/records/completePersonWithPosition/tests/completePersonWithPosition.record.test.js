@@ -10,6 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const completePersonWithPosition_record_1 = require("../completePersonWithPosition.record");
+/*
+*
+* It seems like you are using jest.mock to mock the db module, but the mock function for pool.execute is not returning the expected object for CompletePersonWithPosition.listAll().
+
+The issue could be that you are not providing the correct object in the mock function for pool.execute().
+
+For example, in the mock function, you are returning an array of arrays, which contains the people objects, and an empty array. But it is unclear what structure is expected for the return value of CompletePersonWithPosition.listAll(). You should either change the mock function to return the expected object or modify CompletePersonWithPosition.listAll() to handle the return value of pool.execute() correctly.
+
+
+
+
+
+*
+* */
 jest.mock('../../../utils/db', () => {
     return {
         pool: {
@@ -52,5 +66,8 @@ describe('CompletePersonWithPosition', () => {
             }
         ]);
     }));
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 });
 //# sourceMappingURL=completePersonWithPosition.record.test.js.map

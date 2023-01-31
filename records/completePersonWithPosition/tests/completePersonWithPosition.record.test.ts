@@ -1,6 +1,6 @@
 import { CompletePersonWithPosition } from "../completePersonWithPosition.record";
 
-import {pool} from "../../../utils/db";
+
 
 
 
@@ -50,6 +50,11 @@ describe('CompletePersonWithPosition', () => {
                 salary: 4000
             }
         ]);
+    });
+
+
+    afterEach(() => {
+        jest.clearAllMocks()
     });
 
 });
