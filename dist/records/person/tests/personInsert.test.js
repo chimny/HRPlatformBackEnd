@@ -10,24 +10,91 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const person_record_1 = require("../person.record");
-const db_1 = require("../../../utils/db");
-const mockValue_1 = require("./mockValue");
+// import { mockValue } from "./mockValue";
+//@todo why it connects to real database!!!!!
+//
+// export const mockValue = [[
+//     {
+//         id: '123',
+//         name: 'John',
+//         surName: 'Doe',
+//     },
+//     {
+//         id: '456',
+//         name: 'Jane',
+//         surName: 'Doe',
+//     }
+// ], []];
+//
+//
+//
+//
+// jest.mock('../../../utils/db', () => {
+//     return {
+//         pool: {
+//             execute: jest.fn().mockImplementation((query, params) => {
+//                 if (query.includes("INSERT")) {
+//                     return Promise.resolve([mockValue[0].concat([params]), []]);
+//                 } else {
+//                     return Promise.resolve(mockValue);
+//                 }
+//             })
+//         }
+//     };
+// });
+//
+//
+//
+//
+//
+// describe('person object test insert', () => {
+//     test('should insert new record and return id', async () => {
+//         const person = new PersonRecord({name: 'Roman', surName: 'Test'});
+//       const response =   await person.insert();
+//         expect(response).toEqual(person.id);
+//     });
+//
+//
+//     afterEach(() => {
+//         jest.clearAllMocks()
+//     });
+// });
+const mockValue = [
+    [
+        {
+            id: '123',
+            name: 'John',
+            surName: 'Doe',
+        },
+        {
+            id: '456',
+            name: 'Jane',
+            surName: 'Doe',
+        }
+    ], []
+];
 jest.mock('../../../utils/db', () => {
     return {
         pool: {
-            execute: jest.fn().mockImplementation(() => Promise.resolve(mockValue_1.mockValue))
+            execute: jest.fn().mockImplementation((query, params) => {
+                if (query.includes("INSERT")) {
+                    return Promise.resolve([mockValue[0].concat([params]), []]);
+                }
+                else {
+                    return Promise.resolve(mockValue);
+                }
+            })
         }
     };
 });
 describe('person object test insert', () => {
     test('should insert new record and return id', () => __awaiter(void 0, void 0, void 0, function* () {
-        const person = new person_record_1.PersonRecord({ name: 'Joseph', surName: 'Draw' });
-        yield person.insert();
-        expect(db_1.pool.execute).toHaveBeenCalledWith("INSERT INTO `peoplelist`(`id`, `name`,`surName`) VALUES(:id, :name,:surName) ", {
-            id: person.id,
-            name: person.name,
-            surName: person.surName
-        });
+        const person = new person_record_1.PersonRecord({ name: 'Romanowa', surName: 'Testowa' });
+        const response = yield person.insert();
+        expect(response).toEqual(person.id);
     }));
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 });
 //# sourceMappingURL=personInsert.test.js.map

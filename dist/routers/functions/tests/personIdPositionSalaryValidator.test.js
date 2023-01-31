@@ -42,5 +42,8 @@ describe('personIdPositionSalaryValidator', () => {
         const result = yield (0, personIdPositionSalaryValidator_1.personIdPositionSalaryValidator)('1', 'Manager', '1000');
         expect(result).toBe(false);
     }));
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 });
 //# sourceMappingURL=personIdPositionSalaryValidator.test.js.map

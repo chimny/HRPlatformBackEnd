@@ -2,8 +2,6 @@ import { CompletePersonWithPosition } from "../completePersonWithPosition.record
 
 
 
-
-
 jest.mock('../../../utils/db', () => {
     return {
         pool: {

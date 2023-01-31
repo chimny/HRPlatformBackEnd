@@ -43,4 +43,9 @@ describe('personIdPositionSalaryValidator', () => {
         const result = await personIdPositionSalaryValidator('1', 'Manager', '1000');
         expect(result).toBe(false);
     });
+
+        afterEach(() => {
+        jest.clearAllMocks()
+    });
+
 });
