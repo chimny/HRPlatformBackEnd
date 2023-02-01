@@ -10,8 +10,8 @@
     "localStart": "ts-node index.ts",
     "start": "node ./dist/index.js",
     "start:dev": "tsnd ./src/index.ts",
-    "test": "jest",
     "test-develop": "jest --testPathIgnorePatterns='/dist/'",
+    "test": "jest",
     "build": "tsc"
   },
   "keywords": [],

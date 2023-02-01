@@ -9,7 +9,7 @@ import {PersonPositionEntity,PositionList} from "../../types/personPosition";
 
 type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
-
+const positionList : PositionList[] = ['Assistant','Trainee','Manager','Specialist','Senior Specialist','Junior Specialist']
 
 
 export class PersonPositionRecord implements PersonPositionEntity {
@@ -23,6 +23,8 @@ export class PersonPositionRecord implements PersonPositionEntity {
     constructor(obj: PersonPositionEntity) {
         if (!obj.personId || !obj.position) throw new ValidationError('Person ID and position must be added!');
         if (obj.salary < 0) throw new ValidationError('Salary cannot be below 0!');
+        //@todo validation regarding position list
+        if(!positionList.find(obj.position)) throw new ValidationError('Salary cannot be below 0!');
 
         this.personId = obj.personId;
         this.position = obj.position;
@@ -37,13 +39,21 @@ export class PersonPositionRecord implements PersonPositionEntity {
     }
 
 
-    static async updateOne(personId: string, position: string, salary: number): Promise<string> {
-        await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
-            position, salary, personId
-        })
+    static async updateOne(personId: string, position: string, salary: number): Promise<object> {
+
+        try{
+            await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
+                position, salary, personId
+            })
 
 
-        return personId;
+            return { position, salary, personId};
+        }
+
+        catch(e) {
+            throw new ValidationError(`unexpected error occurred, ${e}`)
+        }
+
 
     }
 

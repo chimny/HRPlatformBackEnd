@@ -89,7 +89,7 @@ jest.mock('../../../utils/db', () => {
 });
 describe('person object test insert', () => {
     test('should insert new record and return id', () => __awaiter(void 0, void 0, void 0, function* () {
-        const person = new person_record_1.PersonRecord({ name: 'Romanowa', surName: 'Testowa' });
+        const person = new person_record_1.PersonRecord({ name: 'Ludwig', surName: 'Beethoven' });
         const response = yield person.insert();
         expect(response).toEqual(person.id);
     }));
