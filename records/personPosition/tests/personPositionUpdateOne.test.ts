@@ -22,7 +22,7 @@ jest.mock('../../../utils/db', () => {
     };
 });
 
-describe('insert', () => {
+describe('update one', () => {
     test('it should update record and return the updated record', async () => {
         const updatedRecord : PersonPositionEntity  = { personId:'123', position:'Manager',salary:22000}
         const response = await PersonPositionRecord.updateOne(updatedRecord.personId,updatedRecord.position,updatedRecord.salary);
@@ -42,6 +42,7 @@ describe('insert', () => {
     test('it should return an error if salary is below 0', async () => {
         try {
             await PersonPositionRecord.updateOne('123', 'Manager', -555000);
+
         } catch (error) {
             expect(error.message).toEqual('Salary cannot be below 0!');
         }
@@ -51,7 +52,7 @@ describe('insert', () => {
         try {
             await PersonPositionRecord.updateOne('123', 'Banana', 5000);
         } catch (error) {
-            expect(error.message).toEqual('Updated position is not on the list');
+            expect(error.message).toEqual('position is not on the allowed list!');
         }
     });
 

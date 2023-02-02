@@ -24,7 +24,7 @@ export class PersonPositionRecord implements PersonPositionEntity {
         if (!obj.personId || !obj.position) throw new ValidationError('Person ID and position must be added!');
         if (obj.salary < 0) throw new ValidationError('Salary cannot be below 0!');
         //@todo validation regarding position list
-        if(!positionList.find(obj.position)) throw new ValidationError('Salary cannot be below 0!');
+        if(!positionList.find(position => position === obj.position)) throw new ValidationError('position is not on the allowed list!');
 
         this.personId = obj.personId;
         this.position = obj.position;
@@ -40,6 +40,11 @@ export class PersonPositionRecord implements PersonPositionEntity {
 
 
     static async updateOne(personId: string, position: string, salary: number): Promise<object> {
+
+        if (!personId || !position) throw new ValidationError('Person ID and position must be added!');
+        if (salary < 0) throw new ValidationError('Salary cannot be below 0!');
+        if(!positionList.find(position => position === position)) throw new ValidationError('position is not on the allowed list!');
+
 
         try{
             await pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
