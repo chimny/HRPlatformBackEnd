@@ -2,6 +2,9 @@ import { PersonRecord } from "../person.record";
 import { pool } from "../../../utils/db";
 import { mockValue } from "./mockValue";
 
+
+//@todo solve the issue update one does not properly
+
 jest.mock('../../../utils/db', () => {
     return {
         pool: {
@@ -10,7 +13,7 @@ jest.mock('../../../utils/db', () => {
                     if (query.id === '123') {
                         return Promise.resolve([[{ id: '123', name: params.name, surName: params.surName }], []]);
                     } else {
-                        return Promise.reject(new Error('Record not found'));
+                        return Promise.reject(new Error(`Record not found`));
                     }
                 } else {
                     return Promise.resolve(mockValue);

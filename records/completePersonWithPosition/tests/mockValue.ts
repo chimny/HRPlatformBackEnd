@@ -19,7 +19,9 @@
 
 
 
-export const mockValue =
+import {PersonPositionDataInterface} from "../../../types/personPositionData";
+
+export const mockValue: PersonPositionDataInterface[] =
    [{
         personId: '123',
         name: 'John',
@@ -34,3 +36,4 @@ export const mockValue =
         position: 'Assistant',
         salary: 4000
     }]
+

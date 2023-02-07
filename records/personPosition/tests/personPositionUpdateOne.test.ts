@@ -13,7 +13,7 @@ jest.mock('../../../utils/db', () => {
         pool: {
             execute: jest.fn().mockImplementation((query, params) => {
                 if (query.includes("UPDATE")) {
-                    return Promise.resolve([mockValue[0].concat([params]), []]);
+                    return Promise.resolve([[mockValue[0]].concat([params]), []]);
                 } else {
                     return Promise.resolve(mockValue);
                 }

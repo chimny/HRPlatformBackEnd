@@ -7,9 +7,7 @@ export const record: PersonPositionEntity = {
     salary: 50000
 }
 
-export const mockValue = [[
-    record
-], []];
+export const mockValue = [record];
 
 
 
