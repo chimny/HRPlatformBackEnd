@@ -2,17 +2,22 @@ import {ValidationError} from "../../utils/error";
 import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
 import {PositionDescriptionEntity} from "../../types/positionDescription";
+import {PositionList} from "../../types/personPosition";
+import {positionList} from "../../utils/positionList";
 
 type PositionDescriptionRecordResults = [PositionDescriptionRecord[], FieldPacket[]];
 
 export class PositionDescriptionRecord implements PositionDescriptionEntity {
-    public position: string;
+    public position: PositionList;
     public description: string;
 
     constructor(obj: PositionDescriptionEntity) {
-        if (!obj.position || !obj.description) {
-            throw new ValidationError('Position and description cannot be empty!')
+        if (!obj.description) {
+            throw new ValidationError('Description cannot be empty!')
         }
+
+        if(!positionList.find(position => position === obj.position)) throw new ValidationError('position is not on the allowed list!');
+
 
         this.position = obj.position;
         this.description = obj.description

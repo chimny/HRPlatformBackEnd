@@ -10,7 +10,7 @@ jest.mock('../../../utils/db', () => {
         pool: {
             execute: jest.fn().mockImplementation((query, params) => {
                 if (query.includes("UPDATE")) {
-                    if (query.id === '123') {
+                    if (params.id === '123') {
                         return Promise.resolve([[{ id: '123', name: params.name, surName: params.surName }], []]);
                     } else {
                         return Promise.reject(new Error(`Record not found`));

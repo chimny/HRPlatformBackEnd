@@ -3,13 +3,14 @@ import {v4 as uuid} from 'uuid';
 import {pool} from "../../utils/db";
 import {FieldPacket} from "mysql2";
 import {PersonPositionEntity,PositionList} from "../../types/personPosition";
+import { positionList } from "../../utils/positionList";
 
 
 
 
 type PersonPositionRecordResults = [PersonPositionEntity[], FieldPacket[]];
 
-const positionList : PositionList[] = ['Assistant','Trainee','Manager','Specialist','Senior Specialist','Junior Specialist']
+
 
 
 export class PersonPositionRecord implements PersonPositionEntity {
