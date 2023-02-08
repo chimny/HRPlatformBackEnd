@@ -1,20 +1,26 @@
+// import {createPool} from "mysql2/promise";
+
+// export const pool = createPool({
+//     host: 'sql11.freemysqlhosting.net',
+//     user: 'sql11592221',
+//     database: 'sql11592221',
+//     password:'2gEcLdClSM',
+//     namedPlaceholders: true,
+//     decimalNumbers: true,
+// });
+
+
 import {createPool} from "mysql2/promise";
 
 export const pool = createPool({
-    host: 'sql11.freemysqlhosting.net',
-    user: 'sql11592221',
-    database: 'sql11592221',
-    password:'2gEcLdClSM',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASSWORD,
     namedPlaceholders: true,
     decimalNumbers: true,
 });
 
-
-// Server: sql11.freemysqlhosting.net
-// Name: sql11592221
-// Username: sql11592221
-// Password: 2gEcLdClSM
-// Port number: 3306
 
 
 
