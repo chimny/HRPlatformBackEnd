@@ -20,7 +20,8 @@ app.use('/addPerson', addPersonRouter_1.default);
 app.use('/personList', personListRouter_1.default);
 app.use('/positions', positionRouter_1.default);
 app.use(error_1.default);
-app.listen(process.env.PORT || 3001, () => {
+//before it was 3000
+app.listen(process.env.PORT || 3306, () => {
     console.log('listening on http://0.0.0.0:3001');
 });
 //# sourceMappingURL=index.js.map
