@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const completePersonWithPosition_record_1 = require("../completePersonWithPosition.record");
+const personPosition_record_1 = require("../personPosition.record");
 const mockValue_1 = require("./mockValue");
 jest.mock('../../../utils/db', () => {
     return {
@@ -18,13 +18,13 @@ jest.mock('../../../utils/db', () => {
         }
     };
 });
-describe('CompletePersonWithPositionListAll', () => {
-    test('listAll should return an array of complete person with position', () => __awaiter(void 0, void 0, void 0, function* () {
-        const completePersonWithPositions = yield completePersonWithPosition_record_1.CompletePersonWithPosition.listAll();
-        expect(completePersonWithPositions).toEqual(mockValue_1.mockValue);
+describe('list all person position records', () => {
+    test('it should pass array of objects with records', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield personPosition_record_1.PersonPositionRecord.listAll();
+        expect([mockValue_1.record]).toEqual(response);
     }));
     afterEach(() => {
         jest.clearAllMocks();
     });
 });
-//# sourceMappingURL=completePersonWithPositionListAll.record.test.js.map
+//# sourceMappingURL=personPositionListAll.test.js.map

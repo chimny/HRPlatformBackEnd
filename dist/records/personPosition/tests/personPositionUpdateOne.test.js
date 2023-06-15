@@ -9,21 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const person_record_1 = require("../person.record");
-const db_1 = require("../../../utils/db");
+const personPosition_record_1 = require("../personPosition.record");
 const mockValue_1 = require("./mockValue");
-//@todo solve the issue update one does not properly
+const db_1 = require("../../../utils/db");
+// mock the `execute` method of the `pool` object
 jest.mock('../../../utils/db', () => {
     return {
         pool: {
             execute: jest.fn().mockImplementation((query, params) => {
                 if (query.includes("UPDATE")) {
-                    if (params.id === '123') {
-                        return Promise.resolve([[{ id: '123', name: params.name, surName: params.surName }], []]);
-                    }
-                    else {
-                        return Promise.reject(new Error(`Record not found`));
-                    }
+                    return Promise.resolve([[mockValue_1.mockValue[0]].concat([params]), []]);
                 }
                 else {
                     return Promise.resolve(mockValue_1.mockValue);
@@ -32,23 +27,39 @@ jest.mock('../../../utils/db', () => {
         }
     };
 });
-describe('updateOne', () => {
+describe('update one', () => {
     test('it should update record and return the updated record', () => __awaiter(void 0, void 0, void 0, function* () {
-        const updatedRecord = { id: '123', name: 'Jacob', surName: 'Smith' };
-        const response = yield person_record_1.PersonRecord.updateOne(updatedRecord.id, updatedRecord.name, updatedRecord.surName);
+        const updatedRecord = { personId: '123', position: 'Manager', salary: 22000 };
+        const response = yield personPosition_record_1.PersonPositionRecord.updateOne(updatedRecord.personId, updatedRecord.position, updatedRecord.salary);
         expect(response).toEqual(updatedRecord);
-        expect(db_1.pool.execute).toBeCalledWith("UPDATE `peoplelist` SET `surName`=:surName, `name`=:name WHERE `id`=:id", updatedRecord);
+        expect(db_1.pool.execute).toBeCalledWith("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", updatedRecord);
     }));
     test('it should return an error if the id does not exist', () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield person_record_1.PersonRecord.updateOne('invalidId', 'Jane', 'Doe');
+            yield personPosition_record_1.PersonPositionRecord.updateOne('invalidId', 'Manager', 555000);
         }
         catch (error) {
             expect(error.message).toEqual('Record not found');
+        }
+    }));
+    test('it should return an error if salary is below 0', () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield personPosition_record_1.PersonPositionRecord.updateOne('123', 'Manager', -555000);
+        }
+        catch (error) {
+            expect(error.message).toEqual('Salary cannot be below 0!');
+        }
+    }));
+    test('it should return an error if passed position is not in assumed list', () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield personPosition_record_1.PersonPositionRecord.updateOne('123', 'Banana', 5000);
+        }
+        catch (error) {
+            expect(error.message).toEqual('position is not on the allowed list!');
         }
     }));
     afterEach(() => {
         jest.clearAllMocks();
     });
 });
-//# sourceMappingURL=personUpdateOne.test.js.map
+//# sourceMappingURL=personPositionUpdateOne.test.js.map

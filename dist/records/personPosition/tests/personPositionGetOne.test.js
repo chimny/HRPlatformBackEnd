@@ -11,33 +11,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const personPosition_record_1 = require("../personPosition.record");
 const mockValue_1 = require("./mockValue");
-// mock the `execute` method of the `pool` object
 jest.mock('../../../utils/db', () => {
     return {
         pool: {
             execute: jest.fn().mockImplementation((query, params) => {
-                if (query.includes("INSERT")) {
-                    return Promise.resolve([[mockValue_1.mockValue[0]].concat([params]), []]);
+                if (params.personId === '123') {
+                    return Promise.resolve([[mockValue_1.record], []]);
                 }
                 else {
-                    return Promise.resolve(mockValue_1.mockValue);
+                    return Promise.resolve([[], []]);
                 }
             })
         }
     };
 });
-describe('insert', () => {
+describe('personPositionGetOne', () => {
     test('it should insert a record and return the id', () => __awaiter(void 0, void 0, void 0, function* () {
-        const newRecord = new personPosition_record_1.PersonPositionRecord({
-            personId: '123',
-            position: 'Manager',
-            salary: 50000
-        });
-        const response = yield newRecord.insert();
-        expect(response).toEqual(newRecord.id);
+        const foundRecord = yield personPosition_record_1.PersonPositionRecord.getOne('123');
+        expect(foundRecord).toEqual(mockValue_1.record);
+    }));
+    test('it should return null if record wasn\'t found', () => __awaiter(void 0, void 0, void 0, function* () {
+        const foundRecord = yield personPosition_record_1.PersonPositionRecord.getOne('ss ssss');
+        expect(foundRecord).toEqual(null);
     }));
     afterEach(() => {
         jest.clearAllMocks();
     });
 });
-//# sourceMappingURL=personPositionInsert.test.js.map
+//# sourceMappingURL=personPositionGetOne.test.js.map

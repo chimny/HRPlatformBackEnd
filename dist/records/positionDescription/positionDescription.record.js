@@ -12,11 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PositionDescriptionRecord = void 0;
 const error_1 = require("../../utils/error");
 const db_1 = require("../../utils/db");
+const positionList_1 = require("../../utils/positionList");
 class PositionDescriptionRecord {
     constructor(obj) {
-        if (!obj.position || !obj.description) {
-            throw new error_1.ValidationError('Position and description cannot be empty!');
+        if (!obj.description) {
+            throw new error_1.ValidationError('Description cannot be empty!');
         }
+        if (!positionList_1.positionList.find(position => position === obj.position))
+            throw new error_1.ValidationError('position is not on the allowed list!');
         this.position = obj.position;
         this.description = obj.description;
     }

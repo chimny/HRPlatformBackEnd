@@ -13,12 +13,16 @@ exports.PersonPositionRecord = void 0;
 const error_1 = require("../../utils/error");
 const uuid_1 = require("uuid");
 const db_1 = require("../../utils/db");
+const positionList_1 = require("../../utils/positionList");
 class PersonPositionRecord {
     constructor(obj) {
         if (!obj.personId || !obj.position)
             throw new error_1.ValidationError('Person ID and position must be added!');
         if (obj.salary < 0)
             throw new error_1.ValidationError('Salary cannot be below 0!');
+        //@todo validation regarding position list
+        if (!positionList_1.positionList.find(position => position === obj.position))
+            throw new error_1.ValidationError('position is not on the allowed list!');
         this.personId = obj.personId;
         this.position = obj.position;
         this.salary = obj.salary;
@@ -31,10 +35,21 @@ class PersonPositionRecord {
     }
     static updateOne(personId, position, salary) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield db_1.pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
-                position, salary, personId
-            });
-            return personId;
+            if (!personId || !position)
+                throw new error_1.ValidationError('Person ID and position must be added!');
+            if (salary < 0)
+                throw new error_1.ValidationError('Salary cannot be below 0!');
+            if (!positionList_1.positionList.find(position => position === position))
+                throw new error_1.ValidationError('position is not on the allowed list!');
+            try {
+                yield db_1.pool.execute("UPDATE `peoplelist_positions` SET `position`=:position, `salary`=:salary WHERE `personId`=:personId", {
+                    position, salary, personId
+                });
+                return { position, salary, personId };
+            }
+            catch (e) {
+                throw new error_1.ValidationError(`unexpected error occurred, ${e}`);
+            }
         });
     }
     static getOne(personId) {
