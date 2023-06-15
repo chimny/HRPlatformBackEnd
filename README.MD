@@ -1,4 +1,8 @@
 # HR Platform Backend
+
+
+Please find working [deployed full stack app here](https://chimny.github.io/HRPlatformFrontEnd/)
+
 The HR Platform backend is a server-side application that provides the necessary functionality for the HR Platform app. This is the author's first more advanced backend project and is part of a full-stack application. It connects to a SQL database using the MySQL2 package and implements CRUD operations to manage data. The application uses Express for handling HTTP requests and responses, supports CORS for cross-origin resource sharing, and overrides HTTP methods using the method-override library. The backend is built with TypeScript for improved development experience and includes Jest for testing with TS-Jest for TypeScript testing support. The HR Platform backend is a crucial component of the overall HR Platform app, providing a secure and efficient means of managing HR-related data.
 
 ## Getting Started
