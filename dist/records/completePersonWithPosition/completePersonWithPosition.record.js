@@ -30,8 +30,13 @@ class CompletePersonWithPosition {
     }
     static listAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const [results] = (yield db_1.pool.execute("SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id "));
-            return results.map(obj => new CompletePersonWithPosition(obj));
+            try {
+                const [results] = (yield db_1.pool.execute("SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id "));
+                return results.map(obj => new CompletePersonWithPosition(obj));
+            }
+            catch (e) {
+                console.log(e);
+            }
         });
     }
 }

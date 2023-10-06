@@ -19,6 +19,8 @@ app.use(cors({
 
 app.use(express.json());
 
+
+
 app.use('/addPerson', addPersonRouter);
 app.use('/personList', personListRouter);
 app.use('/positions', positionRouter)
@@ -26,10 +28,17 @@ app.use('/positions', positionRouter)
 
 app.use(handleError);
 
-//before it was 3000
-app.listen(process.env.PORT || 3306, () => {
+//before it was 3000, old version
+app.listen('process.env.PORT' || 3306, () => {
     console.log('listening on http://0.0.0.0:3001');
 })
+
+
+// app.listen(3306, 'localhost', () => {
+//     console.log('listening on http://localhost:3306');
+// });
+
+
 
 
 

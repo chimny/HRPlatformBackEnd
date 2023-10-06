@@ -32,11 +32,14 @@ personListRouter
   //       })
 
 
-        const personPositionCombinedData: PersonPositionDataInterface[] =  await CompletePersonWithPosition.listAll();
+    const personPositionCombinedData: PersonPositionDataInterface[] =  await CompletePersonWithPosition.listAll();
 
         res.json({
             personPositionData: personPositionCombinedData
         })
+
+
+
 
 
 

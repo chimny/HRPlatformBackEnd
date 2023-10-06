@@ -38,9 +38,15 @@ export class CompletePersonWithPosition implements PersonPositionDataInterface {
     static async listAll(): Promise<CompletePersonWithPosition[]> {
 
 
+try{
+    const [results] = (await pool.execute("SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id ")) as CompletePersonWithPositionResults;
+    return results.map(obj => new CompletePersonWithPosition(obj));
+}
 
-        const [results] = (await pool.execute("SELECT peoplelist_positions.salary,peoplelist_positions.personId,peoplelist.name,peoplelist.surName,peoplelist_positions.position FROM `peoplelist` LEFT JOIN `peoplelist_positions` ON peoplelist_positions.personId = peoplelist.id ")) as CompletePersonWithPositionResults;
-        return results.map(obj => new CompletePersonWithPosition(obj));
+catch(e){
+    console.log(e);
+}
+  
     }
 
 
