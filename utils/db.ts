@@ -9,14 +9,6 @@ export const pool = createPool({
     decimalNumbers: true,
 });
 
-// export const pool = createPool({
-//     host: 'sql7.freesqldatabase.com',
-//     user: 'sql7626446',
-//     database: 'sql7626446',
-//     password: 'epH4mhwXbW',
-//     namedPlaceholders: true,
-//     decimalNumbers: true,
-// });
 
 
  // below pool for localhost connection
