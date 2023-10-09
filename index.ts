@@ -28,9 +28,12 @@ app.use('/positions', positionRouter)
 
 app.use(handleError);
 
+
+const port = process.env.PORT || 3001
+
 //before it was 3000, old version
-app.listen('process.env.PORT' || 3306, () => {
-    console.log('listening on http://0.0.0.0:3001');
+app.listen(port, () => {
+    console.log(`listening on port ${port}`);
 })
 
 
