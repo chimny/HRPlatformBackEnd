@@ -37,12 +37,5 @@ app.listen(port, () => {
 })
 
 
-// app.listen(3306, 'localhost', () => {
-//     console.log('listening on http://localhost:3306');
-// });
-
-
-
-
 
 

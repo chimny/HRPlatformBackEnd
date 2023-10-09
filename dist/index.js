@@ -25,7 +25,4 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 });
-// app.listen(3306, 'localhost', () => {
-//     console.log('listening on http://localhost:3306');
-// });
 //# sourceMappingURL=index.js.map
