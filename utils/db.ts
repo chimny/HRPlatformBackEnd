@@ -10,7 +10,7 @@ export const pool = createPool({
 });
 
 
-
+// komentasz....
  // below pool for localhost connection
 
 
